@@ -1,10 +1,14 @@
+from typing import Optional
+
 from pydantic import BaseModel, Field
 from datetime import date, datetime
 
 # --- Internal Shop Data ---
 
 class Shop(BaseModel):
+    shop_id: str = Field(...)
     name: str = Field(..., max_length=255)
+    password: str = Field(..., max_length=72)
     location: str = Field(..., max_length=50) # Name of the city
 
 class Product(BaseModel):
