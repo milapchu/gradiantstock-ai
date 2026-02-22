@@ -1,34 +1,36 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Register from './components/Register'
+import Login from './components/Login'
 
 function App() {
-  const [count, setCount] = useState(0)
+  // Simple state to toggle between Login and Register views
+  const [isLoginView, setIsLoginView] = useState(true)
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="app-container">
+      <header>
+        <h1>GradiantStock</h1>
+        <p>Shop Inventory Management System</p>
+      </header>
+
+      <main className="card">
+        {/* Toggle between components based on state */}
+        {isLoginView ? <Login /> : <Register />}
+
+        <div className="toggle-section">
+          <p>
+            {isLoginView ? "New shop?" : "Already have an account?"}
+            <button
+              className="link-button"
+              onClick={() => setIsLoginView(!isLoginView)}
+            >
+              {isLoginView ? " Register here" : " Login here"}
+            </button>
+          </p>
+        </div>
+      </main>
+    </div>
   )
 }
 
